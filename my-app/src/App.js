@@ -13,10 +13,17 @@ function App() {
   const deleteMessage = (i) => {
     dispatch({type: 'delete_message', playload: i})
   }
+  const addMessage = () => {
+    const newMessage = {
+      id: Math.floor(Math.random() * (1000000)),
+      title: input
+    }
+    dispatch({type: 'add_message', playload: newMessage})
+  }
   return (
     <div>
       <input value={input} onChange={(e) => setInput(e.target.value)}></input>
-      <button onClick={() => dispatch({type: 'add_message', playload: input})}>Добавить сообщение</button>
+      <button onClick={() => addMessage()}>Добавить сообщение</button>
       {messages.map((message, i) => {
         return (
           <div style={{ display: 'flex', width: 200, justifyContent: 'space-between'}} key={message.id}>

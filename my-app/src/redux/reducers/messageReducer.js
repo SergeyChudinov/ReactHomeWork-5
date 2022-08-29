@@ -21,10 +21,7 @@ export const messageReducer = (state = initialState, action) => {
         case 'add_message':
             return {
                 ...state,
-                messages: [...state.messages, {
-                    id: Math.floor(Math.random() * (1000000)),
-                    title: action.playload
-                }]
+                messages: [...state.messages, action.playload]
             } 
         case 'delete_message':
             return {
