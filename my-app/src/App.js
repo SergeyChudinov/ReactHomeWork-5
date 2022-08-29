@@ -13,14 +13,18 @@ function App() {
   const [name, setName] = useState('')
 
   const deleteChat = (i) => {
-    dispatch({type: 'delete_chat', playload: i})
+    dispatch({type: 'delete_chat', playload: i, meta: {
+      delay: 1500
+    }})
   }
   const addChat = () => {
     const newChat = {
       id: Math.floor(Math.random() * (1000000)),
       name: name
     }
-    dispatch({type: 'add_chat', playload: newChat})
+    dispatch({type: 'add_chat', playload: newChat, meta: {
+      delay: 1500
+    }})
   }
   return (
     <div>
