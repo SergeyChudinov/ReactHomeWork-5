@@ -1,34 +1,36 @@
 import './App.css';
 // import Count from './Count';
-import { messageGetSelector } from './redux/reducers/messageSelector';
+import { messageGetSelector } from './redux/reducers/messageReducer/messageSelector';
 import {useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
 
+// export const messageGetSelector = state => state.messages
 
 function App() {
-  const messages = useSelector(messageGetSelector)
+  // const messages = useSelector(messageGetSelector)
+  const chats = useSelector(messageGetSelector)
   const dispatch = useDispatch()
-  const [input, setInput] = useState('')
+  const [name, setName] = useState('')
 
-  const deleteMessage = (i) => {
-    dispatch({type: 'delete_message', playload: i})
+  const deleteChat = (i) => {
+    dispatch({type: 'delete_chat', playload: i})
   }
-  const addMessage = () => {
-    const newMessage = {
+  const addChat = () => {
+    const newChat = {
       id: Math.floor(Math.random() * (1000000)),
-      title: input
+      name: name
     }
-    dispatch({type: 'add_message', playload: newMessage})
+    dispatch({type: 'add_chat', playload: newChat})
   }
   return (
     <div>
-      <input value={input} onChange={(e) => setInput(e.target.value)}></input>
-      <button onClick={() => addMessage()}>Добавить сообщение</button>
-      {messages.map((message, i) => {
+      <input value={name} onChange={(e) => setName(e.target.value)}></input>
+      <button onClick={() => addChat()}>Добавить сообщение</button>
+      {chats.map(({id, name}, i) => {
         return (
-          <div style={{ display: 'flex', width: 200, justifyContent: 'space-between'}} key={message.id}>
-            <h4 style={{width: 100}}>{message.title}</h4>
-            <button onClick={() => deleteMessage(i)}>x</button>
+          <div style={{ display: 'flex', width: 200, justifyContent: 'space-between'}} key={id}>
+            <h4 style={{width: 100}}>{name}</h4>
+            <button onClick={() => deleteChat(i)}>x</button>
           </div>
         )
       })}

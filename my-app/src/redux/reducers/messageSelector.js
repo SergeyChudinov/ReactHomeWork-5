@@ -1,1 +1,0 @@
-export const messageGetSelector = state => state.messages

@@ -1,0 +1,1 @@
+export const messageGetSelector = state => state.chats.chats

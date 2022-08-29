@@ -4,15 +4,18 @@ const initialState = {
     messages: [
         {
             id: 1,
-            title: 'Hi'
+            title: 'Who are you',
+            chatId: 2
         },
         {
             id: 2,
-            title: 'Good'
+            title: 'Kim',
+            chatId: 1
         },
         {
             id: 3,
-            title: 'Sergey'
+            title: 'Hello',
+            chatId: 3
         }
     ]
 }
