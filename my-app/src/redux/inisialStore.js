@@ -8,6 +8,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
 import logger from 'redux-logger';
+// import { createLogger } from 'redux-logger'
 
 const time = store => next => action => {
     const delay = action?.meta?.delay;
@@ -32,10 +33,14 @@ const reducer = combineReducers({
     message: messageReducer
 })
 
+// const logger = createLogger({
+//     diff: true,
+//     collapsed: true
+// })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
 
-export const store = createStore(persistedReducer, applyMiddleware(logger, time)) //time
+export const store = createStore(persistedReducer, applyMiddleware(time, logger))
 export const persist = persistStore(store)
 
 // export const store = createStore(reducer, composeWithDevTools())
