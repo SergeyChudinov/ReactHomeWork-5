@@ -4,7 +4,7 @@ const initialState = {
     messages: [
         {
             id: 1,
-            title: 'Who are you',
+            title: 'Who are you?',
             chatId: 2
         },
         {
@@ -29,10 +29,11 @@ export const messageReducer = (state = initialState, action) => {
         case 'delete_message':
             return {
                 ...state,
-                messages: [...state.messages.slice(0, action.playload), ...state.messages.slice(action.playload + 1)]
+                messages: [...state.messages.filter(message => message.id !== action.playload)]
             }
         default: {
             return state
         }
     }
 }
+// messages: [...state.messages.slice(0, action.playload), ...state.messages.slice(action.playload + 1)]

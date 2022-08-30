@@ -1,14 +1,15 @@
-import './App.css';
+import './chats.css';
 // import Count from './Count';
-import { messageGetSelector } from './redux/reducers/messageReducer/messageSelector';
+import { chatGetSelector } from '../redux/reducers/messageReducer/messageSelector';
 import {useSelector, useDispatch} from 'react-redux';
 import { useState } from 'react';
 
+import {Link} from 'react-router-dom';
+
 // export const messageGetSelector = state => state.messages
 
-function App() {
-  // const messages = useSelector(messageGetSelector)
-  const chats = useSelector(messageGetSelector)
+function Chats() {
+  const chats = useSelector(chatGetSelector)
   const dispatch = useDispatch()
   const [name, setName] = useState('')
 
@@ -33,16 +34,17 @@ function App() {
       {chats.map(({id, name}, i) => {
         return (
           <div style={{ display: 'flex', width: 200, justifyContent: 'space-between'}} key={id}>
-            <h4 style={{width: 100}}>{name}</h4>
+            <Link className='Link' to={`/messages/${id}`} >
+                {name}
+            </Link>
             <button onClick={() => deleteChat(i)}>x</button>
           </div>
         )
       })}
     </div>
-  );
-    
-    
-   
+  );   
 }
 
-export default App;
+export default Chats;
+
+//    <Link className='Link' to={'/message'} >
